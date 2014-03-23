@@ -1,16 +1,16 @@
 USE chat;
 CREATE TABLE users (
-  user_ID int NOT NULL,
+  user_ID int NOT NULL AUTO_INCREMENT,
   userName text,
   PRIMARY KEY (user_ID)
 );
 CREATE TABLE rooms (
-  room_ID int NOT NULL,
+  room_ID int NOT NULL AUTO_INCREMENT,
   roomName text,
   PRIMARY KEY (room_ID)
 );
 CREATE TABLE messages (
-  msg_ID int NOT NULL,
+  msg_ID int NOT NULL AUTO_INCREMENT,
   user_ID int,
   room_ID int,
   content text,

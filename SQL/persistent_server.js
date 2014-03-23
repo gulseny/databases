@@ -6,12 +6,44 @@ var mysql = require('mysql');
  * database: "chat" specifies that we're using the database called
  * "chat", which we created by running schema.sql.*/
 var dbConnection = mysql.createConnection({
-  user: "peperoni",
-  password: "pizza",
+  user: "root",
+  password: "",
   database: "chat"
 });
 
-dbConnection.connect();
+var callBack = function(err, result){
+  if (err){
+    console.log(err);
+  }else{
+    console.log(result);
+  }
+};
+
+exports.sendInsert = function(message){
+
+//  dbConnection.connect();
+console.log('message is', message);
+console.log('username is ', message.username);
+
+  dbConnection.query('INSERT IGNORE into users (userName) VALUES ("' + message.username + '")', function(err, result){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(result);
+    }
+  })
+  
+
+  dbConnection.query('INSERT into messages (content) VALUES ("' + message.text + '")', function(err, result){
+    if (err){
+      console.log(err);
+    }else{
+     console.log(result);
+    }
+  });
+
+}
+
 
 //
 
